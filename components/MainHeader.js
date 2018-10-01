@@ -7,7 +7,7 @@ class MainHeader extends Component {
     <Left>
       <Button transparent>
         <Icon name='arrow-back' />
-      </Button>
+      </Button> 
     </Left>
       <Body>
         <Title>Funciones</Title>
@@ -23,7 +23,7 @@ class MainHeader extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#007071"
+    backgroundColor: "#058b8c"
   },
 });
 

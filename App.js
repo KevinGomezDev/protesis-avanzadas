@@ -29,6 +29,12 @@ const NavigatorDrawer = createDrawerNavigator({
     contentOptions: {
       activeTintColor: '#fff',
       inactiveTintColor: '#fff',
+      labelStyle: {
+        fontSize: 25,
+      },
+      itemsContainerStyle: {
+        border: 1,
+      },
     },
   })
 

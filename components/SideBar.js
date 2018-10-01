@@ -13,7 +13,7 @@ const SideBar = (props) => (
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#007071',
+    backgroundColor: '#058b8c',
     flex: 1,
   },
   title: {
