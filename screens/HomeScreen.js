@@ -1,79 +1,71 @@
 import React, { Component } from 'react'
+import { BleManager } from 'react-native-ble-plx';
+
 
 import { Image, Text, StyleSheet, TouchableHighlight, Dimensions, ScrollView } from 'react-native';
 import { Container, View } from 'native-base'
 import MainHeader from '../components/MainHeader';
 
-const actions = {
-  actionOne: {
-    id: 1,
-    title: 'Gancho',
-  },
-  actionTwo: {
-    id: 2,
-    title: 'Teclado',
-  },
-  actionThree: {
-    id: 3,
-    title: 'Agarre',
-  },
-  actionFour: {
-    id: 4,
-    title: 'Pulgar',
-  },
-  actionFive: {
-    id: 5,
-    title: 'Doble',
-  },
-  actionSix: {
-    id: 6,
-    title: 'Opuesto',
-  },
-  actionSeven: {
-    id: 7,
-    title: 'Inusual',
-  },
-  actionEight: {
-    id: 8,
-    title: 'Transversal',
-  },
-}
 class HomeScreen extends Component {
   constructor (props){
     super(props)
-    this.state = {
-      actionIds: [],
-    }
+    this.manager = new BleManager();
   }
 
-  selectAction = (id) => {
-    const actions = this.state.actionIds
-    if(actions.includes(id)) {
-      const actionIdx = actions.indexOf(id);
-      (actionIdx > -1) && actions.splice(actionIdx, 1);
-    } else {
-      actions.push(id)
-    }
-    this.setState({ actionIds: actions })
+  componentWillMount() {
+    const subscription = this.manager.onStateChange((state) => {
+      console.log('currentState')
+      console.log(state)
+        if (state === 'PoweredOn') {
+            this.scanAndConnect();
+            subscription.remove();
+        }
+    }, true);
   }
+
+  scanAndConnect = () => {
+    console.log('Escaneando dispositivos')
+    this.manager.startDeviceScan(null, null, (error, device) => {
+      console.log('Error:')
+      console.log(error)
+      console.log('Device:')
+      console.log(device)
+        if (error) {
+            // Handle error (scanning will be stopped automatically)
+            return
+        }
+
+        // Check if it is a device you are looking for based on advertisement data
+        // or other criteria.
+        if (device.name === "TI BLE Sensor Tag" || 
+            device.name === 'SensorTag') {
+
+        device.connect().then((device) => {
+              console.log('connected')
+                return device.discoverAllServicesAndCharacteristics()
+            }).then((device) => {
+              console.log('this is the conected device')
+              console.log(device)
+              // Do work on device with services and characteristics
+            })
+            .catch((error) => {
+                console.log('ups an eerror')
+                console.log(error)
+            });
+            // Stop scanning as it's not necessary if you are scanning for one device.
+            this.manager.stopDeviceScan();
+
+            // Proceed with connection.
+        }
+    });
+}
+
 
   render() {
-    const { actionIds } = this.state
     return <Container>
       <MainHeader toggleMenu={this.props.navigation.openDrawer} />
       <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
-      {Object.keys(actions).map((action, index) =>
-        <TouchableHighlight
-          underlayColor='white'
-          key={actions[action].id} 
-          style={[styles.item, actionIds.includes(actions[action].id) ? styles.itemSelected : {}]} 
-          onPress={() => this.selectAction(actions[action].id)}>
-          <View>
-            <Image style={styles.image} source={require('../assets/hand.png')} />
-            <Text style={styles.label}>{actions[action].title}</Text>
-          </View>
-        </TouchableHighlight>
-      )}
+      <Text>Vamos a verificar si el dispositivo esta conectado</Text>
       </ScrollView>
     </Container>
   }
