@@ -13,14 +13,14 @@ class HomeScreen extends Component {
   }
 
   componentWillMount() {
-    const subscription = this.manager.onStateChange((state) => {
+    /* const subscription = this.manager.onStateChange((state) => {
       console.log('currentState')
       console.log(state)
         if (state === 'PoweredOn') {
             this.scanAndConnect();
             subscription.remove();
         }
-    }, true);
+    }, true); */
   }
 
   scanAndConnect = () => {
