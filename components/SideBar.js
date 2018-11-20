@@ -1,11 +1,17 @@
 import React from 'react'
 import { DrawerItems, SafeAreaView } from 'react-navigation';
 import { StyleSheet, ScrollView, Text } from 'react-native'
+import { Button, Icon, View } from 'native-base'
 
 const SideBar = (props) => (
   <ScrollView style={styles.container}>
     <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-      <Text style={styles.title}>Prótesis Avanzadas</Text>
+      <View style={styles.titleContainer}>
+        <Button transparent onPress={() =>{}}>
+          <Icon style={styles.titleButton} name='menu' />
+        </Button>
+        <Text style={styles.titleLabel}>Mi PA3D</Text>
+      </View>
       <DrawerItems {...props} />
     </SafeAreaView>
   </ScrollView>
@@ -13,14 +19,25 @@ const SideBar = (props) => (
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#058b8c',
+    backgroundColor: '#317579',
     flex: 1,
   },
-  title: {
+  titleContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255,255,255, 0.4)',
+    paddingTop: 20,
+    paddingBottom: 20,
+  },
+  titleButton: {
     color: '#fff',
-    fontSize: 40,
-    padding: 20,
-    textAlign: 'center',
+    fontSize: 30,
+  },
+  titleLabel: {
+    color: '#fff',
+    fontSize: 25,
   }
 });
 
