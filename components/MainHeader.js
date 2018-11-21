@@ -4,14 +4,15 @@ import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'nativ
 class MainHeader extends Component {
   render() {
     return <Header style={styles.container}>
-    <Left>
-      <Button transparent onPress={(this.props.toggleMenu)}>
-        <Icon name='menu' />
-      </Button>
-    </Left>
+      <Left>
+        <Button transparent onPress={(this.props.toggleMenu)}>
+          <Icon name='menu' style={{ fontSize: 40 }} />
+        </Button>
+      </Left>
       <Body>
-        <Title>Funciones</Title>
+        <Title>{this.props.title}</Title>
       </Body>
+      <Right />
   </Header>
   }
 }

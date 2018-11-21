@@ -3,7 +3,7 @@ import { BleManager } from 'react-native-ble-plx';
 
 
 import { Image, Text, StyleSheet, TouchableHighlight, Dimensions, ScrollView } from 'react-native';
-import { Container, View } from 'native-base'
+import { Container, View, Icon } from 'native-base'
 import MainHeader from '../components/MainHeader';
 
 class HomeScreen extends Component {
@@ -11,6 +11,11 @@ class HomeScreen extends Component {
     super(props)
     this.manager = new BleManager();
   }
+
+  static navigationOptions = {
+    drawerLabel: 'Mi PA3D',
+    drawerIcon: () => <Icon name='menu' style={{fontSize: 50, color: 'white'}} />,
+  };
 
   componentWillMount() {
     /* const subscription = this.manager.onStateChange((state) => {
@@ -63,7 +68,7 @@ class HomeScreen extends Component {
 
   render() {
     return <Container>
-      <MainHeader toggleMenu={this.props.navigation.openDrawer} />
+      <MainHeader title='Mi PA3D' toggleMenu={this.props.navigation.openDrawer} />
       <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
       <Text>Vamos a verificar si el dispositivo esta conectado</Text>
       </ScrollView>

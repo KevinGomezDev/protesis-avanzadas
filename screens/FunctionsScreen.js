@@ -54,6 +54,16 @@ class FunctionsScreen extends Component {
     }
   }
 
+  static navigationOptions = {
+    drawerLabel: 'Funciones',
+    drawerIcon: () => (
+      <Image
+        source={require('../assets/sidebar-functions.png')}
+        style={[{height: 50, width: 50}]}
+      />
+    ),
+  };
+
   selectAction = (id) => {
     const actions = this.state.actionIds
     if(actions.includes(id)) {
@@ -68,7 +78,7 @@ class FunctionsScreen extends Component {
   render() {
     const { actionIds } = this.state
     return <Container>
-      <MainHeader toggleMenu={this.props.navigation.openDrawer} />
+      <MainHeader title='Funciones' toggleMenu={this.props.navigation.openDrawer} />
       <View><H2 style={styles.title}>Básicas</H2></View>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
       {Object.keys(actions).map((action, index) => {

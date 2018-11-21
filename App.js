@@ -1,9 +1,7 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { createDrawerNavigator } from 'react-navigation'
 
-import HomeScreen from './screens/HomeScreen'
-import SettingsScreen from './screens/SettingsScreen'
-import FunctionsScreen from './screens/FunctionsScreen'
+import { HomeScreen, FunctionsScreen, SettingsScreen, InfoScreen, AboutScreen } from './screens'
 import SideBar from './components/SideBar'
 
 class App extends Component {
@@ -16,15 +14,18 @@ const NavigatorDrawer = createDrawerNavigator({
     Home: {
       screen: HomeScreen
     },
-    Funciones: {
+    Functions: {
       screen: FunctionsScreen
     },
-    Información: {
-      screen: SettingsScreen
+    Information: {
+      screen: InfoScreen
     },
-    Ajustes: {
+    Settings: {
       screen: SettingsScreen
-    }
+    }, 
+    About: {
+      screen: AboutScreen
+    },
   },{
     contentComponent: SideBar,
     contentOptions: {

@@ -6,16 +6,16 @@ import { Button, Container, Content, Header, Icon, Left } from 'native-base'
 
 import MainHeader from '../components/MainHeader';
 
-class SettingsScreen extends Component {
+class InfoScreen extends Component {
   constructor (props){
     super(props)
   }
 
   static navigationOptions = {
-    drawerLabel: 'Ajustes',
+    drawerLabel: 'Información Prót.',
     drawerIcon: ({ tintColor }) => (
       <Image
-        source={require('../assets/sidebar-settings.png')}
+        source={require('../assets/sidebar-info.png')}
         style={[{height: 50, width: 50}]}
       />
     ),
@@ -23,12 +23,12 @@ class SettingsScreen extends Component {
 
   render() {
     return <Container>
-      <MainHeader title='Ajustes' toggleMenu={this.props.navigation.openDrawer} />
+      <MainHeader title='Información Prótesis' toggleMenu={this.props.navigation.openDrawer} />
       <Content>
-        <Text>Settings Screen</Text>
+        <Text>Informaciçon</Text>
       </Content>
     </Container>
   }
 }
 
-export default SettingsScreen
+export default InfoScreen

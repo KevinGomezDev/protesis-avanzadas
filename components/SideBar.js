@@ -6,12 +6,6 @@ import { Button, Icon, View } from 'native-base'
 const SideBar = (props) => (
   <ScrollView style={styles.container}>
     <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-      <View style={styles.titleContainer}>
-        <Button transparent onPress={() =>{}}>
-          <Icon style={styles.titleButton} name='menu' />
-        </Button>
-        <Text style={styles.titleLabel}>Mi PA3D</Text>
-      </View>
       <DrawerItems {...props} />
     </SafeAreaView>
   </ScrollView>
