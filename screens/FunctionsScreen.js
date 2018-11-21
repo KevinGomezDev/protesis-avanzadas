@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { Image, Text, StyleSheet, TouchableHighlight, Dimensions, ScrollView } from 'react-native';
-import { Container, View, H2 } from 'native-base'
+import { Container, View, H2, Footer, Button } from 'native-base'
 import MainHeader from '../components/MainHeader';
 
 const actions = {
@@ -94,6 +94,11 @@ class FunctionsScreen extends Component {
         </TouchableHighlight>
       })}
       </ScrollView>
+      <Footer style={styles.footer}>
+        <Button style={styles.footerButton}>
+          <Text style={styles.footerText}>OK</Text>
+        </Button>
+      </Footer>
     </Container>
   }
 }
@@ -134,6 +139,26 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
   },
+  footer: {
+    backgroundColor: '#fff',
+    borderWidth: 0.5,
+  },
+  footerButton: {
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: '#34495e',
+    marginTop: 7,
+    width: 100,
+    height: 40,
+  },
+  footerText: {
+    fontSize: 20,
+    color: '#000',
+    fontWeight: 'bold',
+    width: 95,
+    textAlign: 'center',
+  }
 });
 
 export default FunctionsScreen

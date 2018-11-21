@@ -10,7 +10,7 @@ class MainHeader extends Component {
         </Button>
       </Left>
       <Body>
-        <Title>{this.props.title}</Title>
+        <Title style={styles.title}>{this.props.title}</Title>
       </Body>
       <Right />
   </Header>
@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#317579"
   },
+  title: {
+    fontSize: 25,
+    fontWeight: 'normal',
+  }
 });
 
 export default MainHeader
