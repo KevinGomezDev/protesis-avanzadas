@@ -25,7 +25,7 @@ class InfoScreen extends Component {
     return <Container>
       <MainHeader title='Información Prótesis' toggleMenu={this.props.navigation.openDrawer} />
       <Content>
-        <Text>Informaciçon</Text>
+        <Text>Esperalo muy pronto...</Text>
       </Content>
     </Container>
   }
