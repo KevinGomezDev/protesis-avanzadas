@@ -3,7 +3,7 @@ import { BleManager } from 'react-native-ble-plx';
 
 
 import { Image, Text, StyleSheet, TouchableHighlight, Dimensions, ScrollView } from 'react-native';
-import { Container, View, Icon } from 'native-base'
+import { Container, View, Icon, Content, Button, Footer } from 'native-base'
 import MainHeader from '../components/MainHeader';
 
 class HomeScreen extends Component {
@@ -69,41 +69,40 @@ class HomeScreen extends Component {
   render() {
     return <Container>
       <MainHeader title='Mi PA3D' toggleMenu={this.props.navigation.openDrawer} />
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.container}>
-      <Text>Vamos a verificar si el dispositivo esta conectado</Text>
-      </ScrollView>
+      <Content contentContainerStyle={{ flex: 1, alignItems: 'center' }}>
+        <Image source={require('../assets/zoom-icon.png')} style={{ width: 200, height: 200 }}/>
+        <View style={styles.searchContainer}>
+          <Text style={styles.searchLabel}>Buscando...</Text>
+          <Button style={{backgroundColor: '#317579'}}><Icon type="FontAwesome" name='bluetooth-b' /></Button>
+        </View>
+      </Content>
+      <Footer style={styles.footer}>
+        <Image source={require('../assets/isotipo.png')} style={{ width: 50, height: 50 }}/>
+      </Footer>
     </Container>
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap'
-  },
   label: {
     fontSize: 20,
     textAlign: 'center',
   },
-  item: {
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
-    margin: 5,
-    width: Dimensions.get('window').width / 2.2, //Device width divided in almost a half
-    height: 150,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  itemSelected: {
-    backgroundColor: '#ecf0f1',
+  searchContainer: {
+    width: '90%',
     borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     borderColor: 'black',
   },
-  image: {
-    height: 100,
-    width: 100,
+  searchLabel: {
+    fontSize: 30,
+    paddingLeft: 10,
   },
+  footer: {
+    backgroundColor: '#fff',
+  }
 });
 
 export default HomeScreen
