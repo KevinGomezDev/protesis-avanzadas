@@ -18,23 +18,19 @@ class HomeScreen extends Component {
   };
 
   componentWillMount() {
-    /* const subscription = this.manager.onStateChange((state) => {
+   const subscription = this.manager.onStateChange((state) => {
       console.log('currentState')
       console.log(state)
         if (state === 'PoweredOn') {
             this.scanAndConnect();
             subscription.remove();
         }
-    }, true); */
+    }, true);
   }
 
   scanAndConnect = () => {
     console.log('Escaneando dispositivos')
     this.manager.startDeviceScan(null, null, (error, device) => {
-      console.log('Error:')
-      console.log(error)
-      console.log('Device:')
-      console.log(device)
         if (error) {
             // Handle error (scanning will be stopped automatically)
             return
@@ -42,15 +38,25 @@ class HomeScreen extends Component {
 
         // Check if it is a device you are looking for based on advertisement data
         // or other criteria.
-        if (device.name === "TI BLE Sensor Tag" || 
-            device.name === 'SensorTag') {
-
+        if (device.name === "MLT-BT05") {
+          console.log('conectado')
         device.connect().then((device) => {
               console.log('connected')
-                return device.discoverAllServicesAndCharacteristics()
+                return device.discoverAllServicesAndCharacteristics(device.id)
             }).then((device) => {
-              console.log('this is the conected device')
-              console.log(device)
+              device.services().then((service) => {
+                device.characteristicsForDevice(device.id, service.uuid,).then((response) => {
+                  /*
+                    https://polidea.github.io/react-native-ble-plx/#service
+                    this method is suppose to show the characteristcs of a given device 
+                    bleManager.characteristicsForDevice()
+                    It will return an array of characteristcs that we can use later as:
+                    bleManager.writeCharacteristicWithResponseForDevice()
+                    writeWithResponse(valueBase64: Base64, transactionId: TransactionId?): Promise<Characteristic>
+                  */
+                  console.log(response)
+                })
+              })
               // Do work on device with services and characteristics
             })
             .catch((error) => {
