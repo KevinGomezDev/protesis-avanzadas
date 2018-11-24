@@ -9,6 +9,9 @@ import MainHeader from '../components/MainHeader';
 class HomeScreen extends Component {
   constructor (props){
     super(props)
+    this.state = {
+      info: 'Buscando...'
+    }
     this.manager = new BleManager();
   }
 
@@ -73,12 +76,13 @@ class HomeScreen extends Component {
 
 
   render() {
+    const { info } = this.state
     return <Container>
       <MainHeader title='Mi PA3D' toggleMenu={this.props.navigation.openDrawer} />
       <Content contentContainerStyle={{ flex: 1, alignItems: 'center' }}>
         <Image source={require('../assets/zoom-icon.png')} style={{ width: 200, height: 200 }}/>
         <View style={styles.searchContainer}>
-          <Text style={styles.searchLabel}>Buscando...</Text>
+          <Text style={styles.searchLabel}>{info}</Text>
           <Button style={{backgroundColor: '#317579'}}><Icon type="FontAwesome" name='bluetooth-b' /></Button>
         </View>
       </Content>

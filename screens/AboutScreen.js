@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Text, StyleSheet, View, Image, TouchableOpacity, Linking } from 'react-native'
+import { Text, StyleSheet, ImageBackground, Image, TouchableOpacity, Linking } from 'react-native'
 
 import { Button, Container, Content, Header, Icon, Left, H1, H3 } from 'native-base'
 
@@ -22,29 +22,22 @@ class AboutScreen extends Component {
   };
 
   render() {
-    const resizeMode = 'center';
     return <Container>
       <MainHeader title='Acerca de' toggleMenu={this.props.navigation.openDrawer} />
-      <Image source={require('../assets/about-background.png')} style={{ 
-        flex: 1,
-        position: 'absolute',
-        resizeMode,
-        width: '100%',
-        height: '100%',
-        top: 50,
-       }} />
-      <Content contentContainerStyle={styles.content}>
-        <H1 style={styles.title}>Prótesis Avanzadas App</H1>
-        <H3 style={styles.version}>Versión 0.0.1</H3>
-        <Image source={require('../assets/isotipo.png')} style={styles.image} />
-        <TouchableOpacity onPress={() => Linking.openURL('https://www.protesisavanzadas.co')}>
-        <Text style={{color: 'black', fontSize: 25}}>
-          www.protesisavanzadas.co
-        </Text>
-        </TouchableOpacity>
-      <Text style={styles.copyright}>Todos los derechos reservados</Text>
-      <Text style={styles.licence}>LICENCIA</Text>
-      </Content>
+      <ImageBackground source={require('../assets/about-background.png')} style={{width: '100%', height: '100%'}}>
+        <Content contentContainerStyle={styles.content}>
+          <H1 style={styles.title}>Prótesis Avanzadas App</H1>
+          <H3 style={styles.version}>Versión 0.0.1</H3>
+          <Image source={require('../assets/isotipo.png')} style={styles.image} />
+          <TouchableOpacity onPress={() => Linking.openURL('https://www.protesisavanzadas.co')}>
+          <Text style={{color: 'black', fontSize: 25}}>
+            www.protesisavanzadas.co
+          </Text>
+          </TouchableOpacity>
+          <Text style={styles.copyright}>Todos los derechos reservados</Text>
+          <Text style={styles.licence}>LICENCIA</Text>
+        </Content>
+      </ImageBackground>
     </Container>
   }
 }

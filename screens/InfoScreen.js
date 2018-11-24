@@ -13,19 +13,21 @@ class InfoScreen extends Component {
 
   static navigationOptions = {
     drawerLabel: 'Información Prót.',
-    drawerIcon: ({ tintColor }) => (
+    drawerIcon: () => (
       <Image
         source={require('../assets/sidebar-info.png')}
         style={[{height: 50, width: 50}]}
       />
     ),
-  };
+  }
 
   render() {
     return <Container>
       <MainHeader title='Información Prótesis' toggleMenu={this.props.navigation.openDrawer} />
-      <Content>
-        <Text>Esperalo muy pronto...</Text>
+      <Content contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ fontSize: 28, color: '#317579' }}>
+          Esperalo muy pronto...
+        </Text>
       </Content>
     </Container>
   }
