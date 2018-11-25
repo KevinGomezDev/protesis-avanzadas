@@ -1,16 +1,43 @@
 import React, { Component } from 'react'
-import handActions from '../constants/handActions'
+import { 
+  ActivityIndicator,
+  Modal,
+  Image,
+  Text,
+  StyleSheet,
+  TouchableHighlight,
+  Dimensions,
+  ScrollView,
+  ToastAndroid,
+  Alert, 
+} from 'react-native'
 
-import { Image, Text, StyleSheet, TouchableHighlight, Dimensions, ScrollView } from 'react-native';
 import { Container, View, H2, Footer, Button } from 'native-base'
-import MainHeader from '../components/MainHeader';
+
+import handActions from '../constants/handActions'
+import MainHeader from '../components/MainHeader'
 
 class FunctionsScreen extends Component {
   constructor (props){
     super(props)
     this.state = {
       actionIds: [],
+      modalVisible: false,
     }
+  }
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible })
+    /*Remember to clean up this timeout :D!*/
+    setTimeout(() => {
+      this.setState({ modalVisible: !visible }, 
+        ToastAndroid.showWithGravity(
+          'Funciones cargadas con éxito',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        )
+      )
+    }, 5000)
   }
 
   static navigationOptions = {
@@ -21,13 +48,13 @@ class FunctionsScreen extends Component {
         style={[{height: 50, width: 50}]}
       />
     ),
-  };
+  }
 
   selectAction = (id) => {
     const actionIds = this.state.actionIds
     if(actionIds.includes(id)) {
-      const actionIdx = actionIds.indexOf(id);
-      (actionIdx > -1) && actionIds.splice(actionIdx, 1);
+      const actionIdx = actionIds.indexOf(id)
+      (actionIdx > -1) && actionIds.splice(actionIdx, 1)
     } else {
       actionIds.push(id)
     }
@@ -53,10 +80,24 @@ class FunctionsScreen extends Component {
         )}
       </ScrollView>
       <Footer style={styles.footer}>
-        <Button style={styles.footerButton}>
+        <Button style={styles.footerButton} onPress={() => { this.setModalVisible(true) }}>
           <Text style={styles.footerText}>OK</Text>
         </Button>
       </Footer>
+      <Modal
+        animationType="slide"
+        transparent={false}
+        onRequestClose={() => {
+          Alert.alert('Se ha detenido la carga de funciones')
+        }}
+        visible={this.state.modalVisible}>
+        <View style={styles.modalContent}>
+          <Text style={styles.modalText}>
+            Las funciones están siendo cargadas al brazo espere un momento por favor...
+          </Text>
+          <ActivityIndicator size="large" color="#317579" />
+        </View>
+      </Modal>
     </Container>
   }
 }
@@ -97,6 +138,22 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
   },
+  modalContent: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: '100%',
+    justifyContent: 'center',
+    paddingRight: 20,
+    paddingLeft: 20,
+    width: '100%',
+  },
+  modalText: {
+    color: '#317579',
+    fontSize: 20,
+    marginBottom: 30,
+    textAlign: 'center',
+  },
   footer: {
     backgroundColor: '#fff',
     borderWidth: 0.5,
@@ -117,6 +174,6 @@ const styles = StyleSheet.create({
     width: 95,
     textAlign: 'center',
   }
-});
+})
 
 export default FunctionsScreen
