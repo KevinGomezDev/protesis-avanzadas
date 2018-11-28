@@ -10,7 +10,7 @@ class HomeScreen extends Component {
   constructor (props){
     super(props)
     this.state = {
-      info: 'Buscando...'
+      info: 'Buscar'
     }
     this.manager = new BleManager();
   }
@@ -29,6 +29,13 @@ class HomeScreen extends Component {
             subscription.remove();
         }
     }, true); */
+  }
+
+  handlePress = () => {
+    this.setState({ info: 'Buscando...' })
+    setTimeout(() => {
+      this.setState({ info: 'Conectado'})
+    }, 5000)
   }
 
   scanAndConnect = () => {
@@ -82,8 +89,10 @@ class HomeScreen extends Component {
       <Content contentContainerStyle={{ flex: 1, alignItems: 'center' }}>
         <Image source={require('../assets/zoom-icon.png')} style={{ width: 200, height: 200 }}/>
         <View style={styles.searchContainer}>
-          <Text style={styles.searchLabel}>{info}</Text>
-          <Button style={{backgroundColor: '#317579'}}><Icon type="FontAwesome" name='bluetooth-b' /></Button>
+          <Button style={styles.button} onPress={this.handlePress}>
+            <Text style={styles.searchLabel}>{info}</Text>
+            <Icon type="FontAwesome" name='bluetooth-b' />
+          </Button>
         </View>
       </Content>
       <Footer style={styles.footer}>
@@ -98,15 +107,19 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
   },
+  button: {
+    backgroundColor: '#317579',
+    padding: 10,
+    width: 230,
+  },
   searchContainer: {
-    width: '90%',
-    borderWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderColor: 'black',
   },
   searchLabel: {
+    color: '#fff',
     fontSize: 30,
     paddingLeft: 10,
   },
