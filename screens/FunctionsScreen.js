@@ -37,7 +37,7 @@ class FunctionsScreen extends Component {
           ToastAndroid.CENTER,
         )
       )
-    }, 5000)
+    }, 3500)
   }
 
   static navigationOptions = {
@@ -54,7 +54,9 @@ class FunctionsScreen extends Component {
     const actionIds = this.state.actionIds
     if(actionIds.includes(id)) {
       const actionIdx = actionIds.indexOf(id)
-      (actionIdx > -1) && actionIds.splice(actionIdx, 1)
+      if(actionIdx > -1) { 
+        actionIds.splice(actionIdx, 1)
+      }
     } else {
       actionIds.push(id)
     }
