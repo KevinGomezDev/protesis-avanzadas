@@ -5,7 +5,10 @@ import BluetoothProvider from './components/BluetoothProvider'
 class App extends Component {
   render() {
     return <BluetoothProvider>
-      {({ setBluetoohValue }) => <NavigationDrawer screenProps={{ setBluetoohValue }} />}
+      {({ manager, setBluetoohValue }) => 
+        <NavigationDrawer 
+          screenProps={{ manager, setBluetoohValue }} />
+      }
     </BluetoothProvider>
   }
 }

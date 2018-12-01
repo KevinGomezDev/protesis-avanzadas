@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Image, Text, StyleSheet } from 'react-native'
 import { Container, View, Icon, Content, Button, Footer } from 'native-base'
 
-
 import MainHeader from '../components/MainHeader'
 
 class HomeScreen extends Component {
@@ -11,6 +10,13 @@ class HomeScreen extends Component {
     this.state = {
       info: 'Buscar'
     }
+  }
+
+  componentDidMount () {
+    console.log(this.props.screenProps)
+    this.props.screenProps.manager.onStateChange((status) => {
+      console.log(status)
+    })
   }
 
   handlePress = () => {

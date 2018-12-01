@@ -61,9 +61,9 @@ class BluetoothProvider extends Component {
   }
 
   render() {
-    const { setBluetoohValue } = this
+    const { manager, setBluetoohValue } = this
     return <React.Fragment>
-      {this.props.children({ setBluetoohValue })}
+      {this.props.children({ manager, setBluetoohValue })}
     </React.Fragment>
   }
 }

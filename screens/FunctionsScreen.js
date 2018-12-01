@@ -25,7 +25,7 @@ class FunctionsScreen extends Component {
       modalVisible: false,
     }
   }
-
+  
   setModalVisible(visible) {
     this.setState({ modalVisible: visible })
     /*Remember to clean up this timeout :D!*/
