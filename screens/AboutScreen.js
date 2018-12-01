@@ -1,25 +1,13 @@
 import React, { Component } from 'react'
-
 import { Text, StyleSheet, ImageBackground, Image, TouchableOpacity, Linking } from 'react-native'
+import { Container, Content, H1, H3 } from 'native-base'
 
-import { Button, Container, Content, Header, Icon, Left, H1, H3 } from 'native-base'
-
-import MainHeader from '../components/MainHeader';
+import MainHeader from '../components/MainHeader'
 
 class AboutScreen extends Component {
   constructor (props){
     super(props)
   }
-
-  static navigationOptions = {
-    drawerLabel: 'Acerca de',
-    drawerIcon: ({ tintColor }) => (
-      <Image
-        source={require('../assets/sidebar-about.png')}
-        style={[{height: 50, width: 50}]}
-      />
-    ),
-  };
 
   render() {
     return <Container>

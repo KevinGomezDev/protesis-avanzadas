@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { BleManager } from 'react-native-ble-plx';
-
-
-import { Image, Text, StyleSheet, TouchableHighlight, Dimensions, ScrollView } from 'react-native';
+import { BleManager } from 'react-native-ble-plx'
+import { Image, Text, StyleSheet } from 'react-native'
 import { Container, View, Icon, Content, Button, Footer } from 'native-base'
-import MainHeader from '../components/MainHeader';
+
+
+import MainHeader from '../components/MainHeader'
 
 class HomeScreen extends Component {
   constructor (props){
@@ -12,23 +12,18 @@ class HomeScreen extends Component {
     this.state = {
       info: 'Buscar'
     }
-    this.manager = new BleManager();
+    this.manager = new BleManager()
   }
-
-  static navigationOptions = {
-    drawerLabel: 'Mi PA3D',
-    drawerIcon: () => <Icon name='menu' style={{fontSize: 50, color: 'white'}} />,
-  };
-
+  
   componentWillMount() {
    /* const subscription = this.manager.onStateChange((state) => {
       console.log('currentState')
       console.log(state)
         if (state === 'PoweredOn') {
-            this.scanAndConnect();
-            subscription.remove();
+            this.scanAndConnect()
+            subscription.remove()
         }
-    }, true); */
+    }, true) */
   }
 
   handlePress = () => {
@@ -41,6 +36,7 @@ class HomeScreen extends Component {
   scanAndConnect = () => {
     console.log('Escaneando dispositivos')
     this.manager.startDeviceScan(null, null, (error, device) => {
+      console.log(error)
         if (error) {
             // Handle error (scanning will be stopped automatically)
             return
@@ -55,7 +51,8 @@ class HomeScreen extends Component {
                 return device.discoverAllServicesAndCharacteristics(device.id)
             }).then((device) => {
               device.services().then((service) => {
-                device.characteristicsForDevice(device.id, service.uuid,).then((response) => {
+                console.log(service)
+                device.readCharacteristicForService('0000ffe0-0000-1000-8000-00805f9b34fb', '0000ffe1-0000-1000-8000-00805f9b34fb').then((response) => {
                   /*
                     https://polidea.github.io/react-native-ble-plx/#service
                     this method is suppose to show the characteristcs of a given device 
@@ -65,6 +62,9 @@ class HomeScreen extends Component {
                     writeWithResponse(valueBase64: Base64, transactionId: TransactionId?): Promise<Characteristic>
                   */
                   console.log(response)
+                  response.writeWithResponse('MSwyLDMsNCw1XG4=').then((writed) => {
+                    console.log(writed)
+                  })
                 })
               })
               // Do work on device with services and characteristics
@@ -72,13 +72,13 @@ class HomeScreen extends Component {
             .catch((error) => {
                 console.log('ups an eerror')
                 console.log(error)
-            });
+            })
             // Stop scanning as it's not necessary if you are scanning for one device.
-            this.manager.stopDeviceScan();
+            this.manager.stopDeviceScan()
 
             // Proceed with connection.
         }
-    });
+    })
 }
 
 
@@ -126,6 +126,6 @@ const styles = StyleSheet.create({
   footer: {
     backgroundColor: '#fff',
   }
-});
+})
 
 export default HomeScreen

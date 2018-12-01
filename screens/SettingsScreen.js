@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
+import { Alert, Text, StyleSheet, View } from 'react-native'
+import { Form, Input, Label, Item, Container, Content, Button, Icon } from 'native-base'
 
-import { Alert, Text, StyleSheet, View, Image } from 'react-native'
-
-import { Form, Input, Label, Item, Container, Content, Button, Icon, Left } from 'native-base'
-
-import MainHeader from '../components/MainHeader';
+import MainHeader from '../components/MainHeader'
 
 class SettingsScreen extends Component {
   constructor (props){
@@ -18,16 +16,6 @@ class SettingsScreen extends Component {
     password: 'password123',
     serial: 'MiPA3D00089',
   }
-
-  static navigationOptions = {
-    drawerLabel: 'Ajustes',
-    drawerIcon: ({ tintColor }) => (
-      <Image
-        source={require('../assets/sidebar-settings.png')}
-        style={[{height: 50, width: 50}]}
-      />
-    ),
-  };
 
   handleSerialChange(text) {
     this.setState({ serial: text })
@@ -105,6 +93,6 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingBottom: 5,
   }
-});
+})
 
 export default SettingsScreen

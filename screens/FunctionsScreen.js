@@ -1,4 +1,9 @@
 import React, { Component } from 'react'
+
+import handActions from '../constants/handActions'
+import MainHeader from '../components/MainHeader'
+
+import { Container, View, H2, Footer, Button } from 'native-base'
 import { 
   ActivityIndicator,
   Modal,
@@ -11,11 +16,6 @@ import {
   ToastAndroid,
   Alert, 
 } from 'react-native'
-
-import { Container, View, H2, Footer, Button } from 'native-base'
-
-import handActions from '../constants/handActions'
-import MainHeader from '../components/MainHeader'
 
 class FunctionsScreen extends Component {
   constructor (props){
@@ -38,16 +38,6 @@ class FunctionsScreen extends Component {
         )
       )
     }, 3500)
-  }
-
-  static navigationOptions = {
-    drawerLabel: 'Funciones',
-    drawerIcon: () => (
-      <Image
-        source={require('../assets/sidebar-functions.png')}
-        style={[{height: 50, width: 50}]}
-      />
-    ),
   }
 
   selectAction = (id) => {
