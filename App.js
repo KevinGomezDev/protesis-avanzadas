@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import NavigationDrawer from './components/NavigationDrawer'
+import BluetoothProvider from './components/BluetoothProvider'
 
 class App extends Component {
   render() {
-    return <NavigationDrawer />
+    return <BluetoothProvider>
+      {({ setBluetoohValue }) => <NavigationDrawer screenProps={{ setBluetoohValue }} />}
+    </BluetoothProvider>
   }
 }
 
