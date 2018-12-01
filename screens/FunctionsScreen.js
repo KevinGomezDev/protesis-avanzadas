@@ -30,14 +30,15 @@ class FunctionsScreen extends Component {
     this.setState({ modalVisible: visible })
     /*Remember to clean up this timeout :D!*/
     setTimeout(() => {
-      this.setState({ modalVisible: !visible }, 
+      this.props.screenProps.setBluetoohValue(this.state.actionIds.toString())
+      this.setState({ modalVisible: !visible },
         ToastAndroid.showWithGravity(
           'Funciones cargadas con éxito',
           ToastAndroid.SHORT,
           ToastAndroid.CENTER,
         )
       )
-    }, 3500)
+    }, 3000)
   }
 
   selectAction = (id) => {

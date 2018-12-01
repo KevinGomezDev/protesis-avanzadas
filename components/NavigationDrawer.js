@@ -8,7 +8,7 @@ import SideBar from './SideBar'
 
 const NavigationDrawer = createDrawerNavigator({
   Home: {
-    screen: props => <HomeScreen {...props} />,
+    screen: HomeScreen,
     navigationOptions: () => ({
       drawerLabel: 'Mi PA3D',
       drawerIcon: () => <Icon name='menu' style={{fontSize: 50, color: 'white'}} />,

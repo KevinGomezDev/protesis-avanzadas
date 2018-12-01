@@ -22,7 +22,6 @@ class HomeScreen extends Component {
 
   render() {
     const { info } = this.state
-    console.log(this.props)
     return <Container>
       <MainHeader title='Mi PA3D' toggleMenu={this.props.navigation.openDrawer} />
       <Content contentContainerStyle={{ flex: 1, alignItems: 'center' }}>
